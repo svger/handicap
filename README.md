@@ -1,1 +1,1 @@
-StockHandicap
+generator-ui

@@ -1,0 +1,214 @@
+//
+// variables
+// ====================================
+@bg-price-color:          #fff;
+@bg-info-color:           #fff;
+@font-default-color:      #fff;
+@bg-price-color:          #303030;
+@bg-info-color:           #404040;
+@font-size-big:           .16rem;
+@font-size-medium:        .14rem;
+@font-size-small:         .12rem;
+@font-drop-color:         #00c434;
+@font-rise-color:         #ff3d00;
+@font-color-black:        #00c434;
+@font-color-red:          #FF3D00;
+@font-color-green:        #00c434;
+@body-font-color-gray:    #929292;
+
+//
+// function
+// ====================================
+.resize(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
+.flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.setImage(@width, @url, @position-x:center, @position-y:center) {
+  background: url(@url) no-repeat;
+  background-size: @width auto;
+  background-position: @position-x @position-y;
+}
+
+//
+// styles
+// ====================================
+.ft-12 {
+  font-size: @font-size-small;
+}
+
+.ft-14 {
+  font-size: @font-size-medium;
+}
+
+.ft-16 {
+  font-size: @font-size-big;
+}
+
+.pdb-8 {
+  padding-bottom: 0.04rem;
+}
+
+.stockInfoContainer {
+  margin-bottom: 0.1rem;
+}
+
+.detail-con {
+  padding-bottom: 0.5rem;
+}
+
+.suspension {
+  padding-top: 0.18rem;
+  color: @body-font-color-gray;
+  font-size: @font-size-big;
+}
+
+.price-con {
+  display: flex;
+  justify-content: space-between;
+  background-color: @bg-price-color;
+}
+
+.current-price-con {
+  width: 60%;
+  padding-left: 0.1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.current-price {
+  font-size: 0.40rem;
+  line-height: 0.40rem;
+}
+
+.font-green {
+  color: @font-drop-color;
+}
+
+.font-red {
+  color: @font-rise-color;
+}
+
+.font-white {
+  color: @font-default-color;
+}
+
+.font-black {
+  color: @font-color-black
+}
+
+.stock-price-up {
+  color: @font-color-red;
+}
+
+.stock-price-down {
+  color: @font-color-green;
+}
+
+.ft-common,
+.stock-price-current {
+  color: @font-default-color;
+}
+
+.body-font-color-gray {
+  color: @body-font-color-gray;
+}
+
+.current-price-gain {
+  font-size: 0.14rem;
+  line-height: 0.2rem;
+}
+
+.current-price-gain-rate {
+  font-size: 0.14rem;
+  line-height: 0.2rem;
+}
+
+.day-price-con {
+  width: 40%;
+  margin-left: .08rem;
+  padding-top: 0.15rem;
+  height: 0.66rem;
+  box-sizing: border-box;
+}
+
+.day-price {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  position: relative;
+}
+
+.info-item {
+  display: inline-block;
+  width: 20%;
+  height: .55rem;
+  position: relative;
+  text-align: center;
+  padding-top: 0.12rem;
+  box-sizing: border-box;
+
+  > p:first-child {
+    font-size: .13rem;
+  }
+}
+
+.slip {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.info-item .slip {
+  top: 0.15rem;
+}
+
+.info-arrow {
+  padding-top: .05rem;
+  padding-bottom: .1rem;
+  color: @body-font-color-gray;
+  font-size: 0.18rem;
+  text-align: center;
+  .flex-center();
+}
+
+.slip-border {
+  line-height: 0.36rem;
+  font-size: 0.26rem;
+  border-right: 1px solid #ddd;
+  opacity: 0.1;
+}
+
+.info-con {
+  background: @bg-info-color;
+}
+
+.show-info {
+  height: auto;
+}
+
+.close-info {
+  height: .55rem;
+  overflow: hidden;
+}
+
+.arrowUp,
+.arrowDown {
+  .resize(.11rem, .11rem);
+}
+
+.arrowUp {
+  .setImage(.11rem, '../style/images/arrowUp.png');
+}
+
+.arrowDown {
+  .setImage(.11rem, '../style/images/arrowDown.png');
+}
