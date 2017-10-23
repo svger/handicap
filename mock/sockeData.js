@@ -119,7 +119,6 @@ module.exports = {
         }
       },
       "leading":0,
-      "tradeTime":0,
       "source":2,
       "mainFundNetInflow":0,
       "dataTransType":1,

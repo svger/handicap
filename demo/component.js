@@ -20,17 +20,18 @@ class App extends React.Component {
 
   render() {
     const { tradeTime, precision, handCount, type } = params;
+    const config = Object.assign({
+      tradeTime,
+      precision,
+      handCount,
+      isStop: false,
+    }, this.state.socketData, staticData)
 
     return (
        <div>
          <StockHandicap
-             tradeTime={tradeTime}
-             precision={precision}
-             handCount={handCount}
              generaType={type}
-             socketData={this.state.socketData}
-             staticData={staticData}
-             isStop={false}
+             config={config}
          />
        </div>
     );

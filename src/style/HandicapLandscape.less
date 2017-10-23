@@ -1,0 +1,118 @@
+@body-font-color-gray:              #929292;
+@font-color-white:                  #ffffff;
+@font-color-red:                    #FF3D00;
+@font-color-green:                  #00C434;
+@font-size-medium:                  .14rem;
+
+.setFont(@size:@font-size-medium, @color:@font-color-white) {
+  font-size: @size;
+  color: @color;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-left: .15rem;
+  padding-right: .15rem;
+  padding-top: .05rem;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: .2rem;
+
+  .row:first-child {
+    margin-bottom: .05rem;
+  }
+}
+
+.detail {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.stretch {
+  flex: 1;
+}
+
+.item {
+  margin-bottom: .05rem;
+  color: @body-font-color-gray;
+  font-size: .14rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  > span {
+    padding-right: 0.05rem;
+  }
+
+  > b {
+    color: @font-color-white;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stock {
+  .setFont(.2rem, @font-color-white);
+  font-weight: bolder;
+  margin-right: .15rem;
+}
+
+.price {
+  font-size: .2rem;
+  font-weight: bolder;
+}
+
+.price.price-small {
+  font-size: .14rem;
+  font-weight: bolder;
+}
+
+.time {
+  .setFont(.12rem, @body-font-color-gray);
+  font-weight: bolder;
+}
+
+.priceDelta {
+  font-weight: bolder;
+  font-size: .12rem;
+}
+
+.delta {
+  padding-right: .05rem;
+}
+
+.summary, .detail {
+  .stock-price-up {
+    color: @font-color-red;
+  }
+
+  .stock-price-down {
+    color: @font-color-green;
+  }
+
+  .stock-price-current {
+    color: @font-color-white;
+  }
+}
+

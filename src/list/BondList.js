@@ -4,11 +4,11 @@ import { getFontColor } from '../utils/';
 //获取债券信息
 const getBondList = ({ socketData, staticData, precision, handCount, isStop }) => {
   let {
-      timestamp, tradeVol, turnover, lastVol,
-      highPrice, lowPrice, preClosePrice, openPrice, lastPrice,
+       tradeVol, turnover, lastVol,
+      highPrice, lowPrice, preClosePrice,
       asks, bids
   } = socketData;
-  const { limitUp, limitDown, totalPastFiveAvg } = staticData;
+  const { limitUp, limitDown } = staticData;
 
   return [
     {

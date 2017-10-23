@@ -22,17 +22,10 @@ export const getInfoList = (() => {
     [`${CONSTANTS.GENERAL_TYPE.INDEX}`]: getIndexList,
   };
 
-  return ({ socketData = {}, staticData = {}, precision, handCount, tradeTime, generaType, isStop } = {}) => {
+  return ({ config = {}, generaType } = {}) => {
     const key = generaType ? generaType.toString() : CONSTANTS.GENERAL_TYPE.STOCK.toString();
 
-    return fn[key]({
-      socketData,
-      staticData,
-      precision,
-      handCount,
-      tradeTime,
-      isStop,
-    });
+    return fn[key](config);
   }
 })();
 
@@ -57,14 +50,17 @@ export const getStockDeltaInfo = ({ lastPrice, openPrice, preClosePrice, phase, 
     return ret;
   }
 
+  const delta = _lastPrice.minus(_preClosePrice).toFixed(precision);
+  const deltaRate = _lastPrice.minus(_preClosePrice).div(_preClosePrice).times(100).toFixed(2);;
+
   ret.lastPrice = _lastPrice.toFixed(precision);
   ret.preClosePrice = _preClosePrice.toFixed(precision);
-  // 涨跌价
-  ret.priceChange = _lastPrice.minus(_preClosePrice).toFixed(precision);
-  // 涨跌幅, 带%的字段都保留两位小数，与涨停宝保持一致
-  ret.priceChangeRate = _lastPrice.minus(_preClosePrice).div(_preClosePrice).times(100).toFixed(2);
   // 当前涨跌状态
   ret.deltaDirection = _lastPrice.cmp(_preClosePrice);
+  // 涨跌价
+  ret.delta = getChange(delta, ret.deltaDirection, ret.lastPrice);
+  // 涨跌幅, 带%的字段都保留两位小数，与涨停宝保持一致
+  ret.deltaRate = `${getChange(deltaRate, ret.deltaDirection, ret.lastPrice)}%`;
 
   //开盘期间的涨跌数据, 集合竞价期间无开盘价
   if (openPrice) {
@@ -101,3 +97,23 @@ export const getFontColor = (a, b) => {
 
   return getDirectionStyleName(direction);
 };
+
+export const getChange = (delta, direction, lastPrice) => {
+  if (lastPrice === 0) {
+
+    return delta;
+  }
+
+  return (direction > 0) ? `+${delta}` : delta;
+}
+
+export const formatStockPriceTime = (timestamp) => {
+  if (!timestamp) {
+    return '--';
+  }
+
+  timestamp = timestamp.toString();
+
+  return `${timestamp.slice(8, 10)}:${timestamp.slice(10, 12)}`;
+}
+

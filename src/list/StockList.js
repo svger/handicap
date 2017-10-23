@@ -2,13 +2,13 @@ import { unitFormat } from '@cefc-utils/format';
 import StockAlgorithm from '../utils/StockAlgorithm';
 import { getFontColor } from '../utils/';
 
-const getStockList = ({ socketData, staticData, precision, handCount, tradeTime, isStop }) => {
-  let {
+const getStockList = (config) => {
+  const {
       timestamp, tradeVol, turnover, lastVol,
       highPrice, lowPrice, preClosePrice, openPrice, lastPrice,
-      asks, bids
-  } = socketData;
-  const { nppLatestYear, publicFloatShareQuantity, limitUp, limitDown, totalPastFiveAvg, outStandingShare } = staticData;
+      precision, handCount, tradeTime, isStop,
+      asks, bids, nppLatestYear, publicFloatShareQuantity, limitUp, limitDown, totalPastFiveAvg, outStandingShare
+  } = config;
 
   return [
     {
@@ -50,12 +50,12 @@ const getStockList = ({ socketData, staticData, precision, handCount, tradeTime,
     {
       name: '均价',
       value: StockAlgorithm.average(isStop, turnover, tradeVol, precision),
-      color: !isStop && getFontColor(turnover / tradeVol, staticData.preClosePrice)
+      color: !isStop && getFontColor(turnover / tradeVol, preClosePrice)
     },
     {
       name: '开盘',
       value: StockAlgorithm.price({ stop: isStop, price: openPrice, precision }),
-      color: !isStop && getFontColor(openPrice, staticData.preClosePrice)
+      color: !isStop && getFontColor(openPrice, preClosePrice)
     },
     {
       name: '振幅',
@@ -91,15 +91,15 @@ const getStockList = ({ socketData, staticData, precision, handCount, tradeTime,
     },
     {
       name: '每股收益',
-      value: StockAlgorithm.eps({ precision, val: staticData.eps })
+      value: StockAlgorithm.eps({ precision, val: config.eps })
     },
     {
       name: '每股净值',
-      value: StockAlgorithm.naps({ precision, val: staticData.naps })
+      value: StockAlgorithm.naps({ precision, val: config.naps })
     },
     {
       name: '市净率',
-      value: StockAlgorithm.priceRatio({ price: lastPrice, naps: staticData.naps, precision })
+      value: StockAlgorithm.priceRatio({ price: lastPrice, naps: config.naps, precision })
     }
   ]
 };

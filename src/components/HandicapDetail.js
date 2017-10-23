@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import CSSModule from 'react-css-modules';
-import styles from '../style/index.less';
+import styles from '../style/StockHandicap.less';
 import CONSTANTS from '../constants';
 
 const GENERAL_TYPE = CONSTANTS.GENERAL_TYPE;
 class HandicapDetail extends Component {
   static propTypes = {
-    generaType: PropTypes.oneOf([GENERAL_TYPE.STOCK, GENERAL_TYPE.BOND, GENERAL_TYPE.FUND]),
     infoList: PropTypes.array // 盘口列表数据
   }
 

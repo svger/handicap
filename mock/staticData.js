@@ -2,7 +2,7 @@ module.exports = {
   "exch":0,
   "generaType":1,
   "id":"002839",
-  "alias":"å¼ å®¶æ¸¯è¡Œ",
+  "alias":"张家港行",
   "preClosePrice":13.81,
   "index":1288,
   "combineType":"000130",

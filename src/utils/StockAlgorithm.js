@@ -105,6 +105,11 @@ const StockAlgorithm = {
       return StockAlgorithm.HOLDER;
     }
 
+    if (price === StockAlgorithm.HOLDER) {
+
+      return StockAlgorithm.HOLDER;
+    }
+
     const _price = new Big(price);
 
     if (_price.eq(0)) {
